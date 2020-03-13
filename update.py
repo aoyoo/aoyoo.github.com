@@ -81,6 +81,9 @@ if __name__ == '__main__':
       print ('{} allocation ratio: {:.2f}% (anualized volatility: {:.2f}%, performance: {:.2f}%)'.format(symbols[i], float(100 / (volatilities[i] * sum_inverse_volatility)), float(volatilities[i] * 100), float(performances[i] * 100)))
   
 
+  echo_str += "Portfolio: {}, as of {} (window size is {} days)\r\n".format(str(symbols), date.today().strftime('%Y-%m-%d'), window_size)
+  for i in range(len(symbols)):
+      echo_str += '{} allocation ratio: {:.2f}% (anualized volatility: {:.2f}%, performance: {:.2f}%)\r\n'.format(symbols[i], float(100 / (volatilities[i] * sum_inverse_volatility)), float(volatilities[i] * 100), float(performances[i] * 100))
 
 
   with open('index.html', 'a') as w:
