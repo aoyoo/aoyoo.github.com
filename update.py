@@ -92,8 +92,8 @@ if __name__ == '__main__':
   #subprocess.Popen("python3 inverse_volatility_caculation-master/inverse_volatility.py >> index.html")
 
 
-  subprocess.Popen("git commit -am log:{}".format(time_str), shell=True)
-  subprocess.Popen("git push", shell=True)
+  subprocess.Popen("git commit -am log:{}; git push".format(time_str), shell=True)
+  #subprocess.Popen("git push", shell=True)
 
 
   #out_bytes = subprocess.check_output(['git','commit', '-am', 'log:{}'.format(time_str)])
