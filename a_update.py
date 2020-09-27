@@ -70,9 +70,13 @@ if __name__ == '__main__':
   print ("Portfolio: {}, as of {} (window size is {} days)".format(str(symbols), date.today().strftime('%Y-%m-%d'), window_size))
   UPRO_rate = float(100 / (volatilities[0] * sum_inverse_volatility))
       
+  subprocess.Popen("""sed -i "17s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, '{}']/" txt""".format(time_str), shell=True)
+  subprocess.Popen("""sed "24s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, {}]/" txt""".format(UPRO_rate), shell=True)
+
   print ("END time:{} CNY_rate:{} UPRO_rate:{}".format(time_str, CNY_rate, UPRO_rate))
   #subprocess.Popen("git commit -am log:{}; git push".format(time_str), shell=True)
 
+#index.html
   #sed "s/\(.*\)\(category.*data:\)\(.*\)']/\1\2\3', '999']/" txt
   #sed "17s/\(.*\)\(.*data:\)\(.*\)]/\1\2\3, 999]/" txt
   # 17, 24, 27
