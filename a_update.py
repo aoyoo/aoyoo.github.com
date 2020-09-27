@@ -37,9 +37,10 @@ def get_volatility_and_performance(symbol):
 
 if __name__ == '__main__':
 
+  time_str = time.strftime("%Y-%m-%d", time.localtime())
+
   base = 'USD'
   symbols = 'CNY'
-
   response = requests.get("https://api.currencyscoop.com/v1/latest?api_key=db56620137b26bcc472006a30a63ae43&base={}&symbols={}".format(base, symbols)).json()
   #{"meta":{"code":200,"disclaimer":"Usage subject to terms: https:\/\/currencyscoop.com\/terms"},"response":{"date":"2020-03-06T09:44:58Z","base":"USD","rates":{"CNY":6.94776903}}}
   #print(response)
@@ -47,21 +48,16 @@ if __name__ == '__main__':
   if code != 200:
     print("return code:{}".format(code))
     sys.exit(1)
-  rate = response["response"]["rates"][symbols]
+  CNY_rate = response["response"]["rates"][symbols]
 
-  time_str = time.strftime("%Y-%m-%d", time.localtime())
-
-  echo_str = "{} {} {} {}\r\n".format(time_str, base, symbols, rate)
-  print(echo_str)
+  print("{} {} {} {}\r\n".format(time_str, base, symbols, CNY_rate))
 
   symbols = ['UPRO', 'TMF']
-  
   num_trading_days_per_year = 252
   window_size = 20
   date_format = "%Y-%m-%d"
   end_timestamp = int(time.time())
   start_timestamp = int(end_timestamp - (1.4 * (window_size + 1) + 4) * 86400)
-
   volatilities = []
   performances = []
   sum_inverse_volatility = 0.0
@@ -72,29 +68,12 @@ if __name__ == '__main__':
       performances.append(performance)
   
   print ("Portfolio: {}, as of {} (window size is {} days)".format(str(symbols), date.today().strftime('%Y-%m-%d'), window_size))
-  for i in range(len(symbols)):
-      print ('{} allocation ratio: {:.2f}% (anualized volatility: {:.2f}%, performance: {:.2f}%)'.format(symbols[i], float(100 / (volatilities[i] * sum_inverse_volatility)), float(volatilities[i] * 100), float(performances[i] * 100)))
-  
+  UPRO_rate = float(100 / (volatilities[0] * sum_inverse_volatility))
+      
+  print ("END time:{} CNY_rate:{} UPRO_rate:{}".format(time_str, CNY_rate, UPRO_rate))
+  #subprocess.Popen("git commit -am log:{}; git push".format(time_str), shell=True)
 
-  echo_str += "Portfolio: {}, as of {} (window size is {} days)\r\n".format(str(symbols), date.today().strftime('%Y-%m-%d'), window_size)
-  for i in range(len(symbols)):
-      echo_str += '{} allocation ratio: {:.2f}% (anualized volatility: {:.2f}%, performance: {:.2f}%)\r\n'.format(symbols[i], float(100 / (volatilities[i] * sum_inverse_volatility)), float(volatilities[i] * 100), float(performances[i] * 100))
-
-
-  with open('index2.html', 'a') as w:
-    w.write(echo_str)
-
-  #subprocess.Popen("python3 inverse_volatility_caculation-master/inverse_volatility.py >> index.html")
-
-
-  subprocess.Popen("git commit -am log:{}; git push".format(time_str), shell=True)
-  #subprocess.Popen("git push", shell=True)
-
-
-  #out_bytes = subprocess.check_output(['git','commit', '-am', 'log:{}'.format(time_str)])
-  #print("git ci output:{}".format(out_bytes.decode('utf-8')))
-
-  #out_bytes = subprocess.check_output(['git','push'])
-  #print("git push output:{}".format(out_bytes.decode('utf-8')))
-
+  #sed "s/\(.*\)\(category.*data:\)\(.*\)']/\1\2\3', '999']/" txt
+  #sed "17s/\(.*\)\(.*data:\)\(.*\)]/\1\2\3, 999]/" txt
+  # 17, 24, 27
 
