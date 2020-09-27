@@ -1,35 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>ECharts</title>
-    <!-- 引入 echarts.js -->
-    <script src="echarts.min.js"></script>
+<meta charset="utf-8">
+<title> portfolio </title>
+<!-- 引入 echarts.js -->
+<script src="echarts.min.js"></script>
 </head>
 <body>
-    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main" style="width: 600px;height:400px;"></div>
-    <script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+  // 基于准备好的dom，初始化echarts实例
+  var myChart = echarts.init(document.getElementById('main'));
 
-        var option = {
-            xAxis: {
-                type: 'category',
-                data: ['11', '12', '13', '14', '15', '16', '17']
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [{
-                data: [0.1, 0.2, 0.1, 0.3, 0.3, 0.24, 0.1],
-                type: 'line'
-            }]
-        };
+  var option1 = {
+    xAxis: {
+      type: 'category',
+      data: ['11', '12', '13', '14', '15', '16', '17']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [{
+      data: [0.1, 0.2, 0.1, 0.3, 0.3, 0.24, 0.1],
+      type: 'line'
+    }]
+  };
+  myChart.setOption(option1);
 
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-    </script>
+  var option2 = {
+    xAxis: {
+      type: 'category',
+      data: ['11', '12', '13', '14', '15', '16', '17']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [{
+      data: [0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.2],
+      type: 'line'
+    }]
+  };
+  myChart.setOption(option2);
+
+</script>
 </body>
 </html>
 
