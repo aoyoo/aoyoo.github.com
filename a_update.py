@@ -75,9 +75,9 @@ if __name__ == '__main__':
   p = subprocess.Popen("""sed -i "24s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, {:.2f}]/" index.html""".format(UPRO_rate), shell=True)
   p.wait()
 
-  p = subprocess.Popen("""sed -i "17s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, '{}']/" cny""".format(time_str), shell=True)
+  p = subprocess.Popen("""sed -i "17s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, '{}']/" cny.html""".format(time_str), shell=True)
   p.wait()
-  p = subprocess.Popen("""sed -i "24s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, {}]/" cny""".format(CNY_rate), shell=True)
+  p = subprocess.Popen("""sed -i "24s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, {}]/" cny.html""".format(CNY_rate), shell=True)
   p.wait()
 
 
