@@ -81,7 +81,7 @@ if __name__ == '__main__':
       echo_str += '{} allocation ratio: {:.2f}% (anualized volatility: {:.2f}%, performance: {:.2f}%)\r\n'.format(symbols[i], float(100 / (volatilities[i] * sum_inverse_volatility)), float(volatilities[i] * 100), float(performances[i] * 100))
 
 
-  with open('index2.html', 'a') as w:
+  with open('index_2.html', 'a') as w:
     w.write(echo_str)
 
   #subprocess.Popen("python3 inverse_volatility_caculation-master/inverse_volatility.py >> index.html")
