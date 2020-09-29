@@ -70,14 +70,14 @@ if __name__ == '__main__':
   print ("Portfolio: {}, as of {} (window size is {} days)".format(str(symbols), date.today().strftime('%Y-%m-%d'), window_size))
   UPRO_rate = float(100 / (volatilities[0] * sum_inverse_volatility))
       
-  p = subprocess.Popen("""sed -i "17s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, '{}']/" index.html""".format(time_str), shell=True)
+  p = subprocess.Popen("""sed -i "40s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, '{}']/" index.html""".format(time_str), shell=True)
   p.wait()
-  p = subprocess.Popen("""sed -i "24s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, {:.2f}]/" index.html""".format(UPRO_rate), shell=True)
+  p = subprocess.Popen("""sed -i "50s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, {:.2f}]/" index.html""".format(UPRO_rate), shell=True)
   p.wait()
 
-  p = subprocess.Popen("""sed -i "17s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, '{}']/" cny.html""".format(time_str), shell=True)
+  p = subprocess.Popen("""sed -i "40s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, '{}']/" cny.html""".format(time_str), shell=True)
   p.wait()
-  p = subprocess.Popen("""sed -i "24s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, {}]/" cny.html""".format(CNY_rate), shell=True)
+  p = subprocess.Popen("""sed -i "50s/\(.*\)\(.*data:\)\(.*\)]/\\1\\2\\3, {}]/" cny.html""".format(CNY_rate), shell=True)
   p.wait()
 
 
